@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renewable Energy Portfolio</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #d0f0c0; /* pastel green background */
+    }
+    .content-wrapper {
+        display: flex;
+        flex: 1;
+    }
+    .sidebar {
+        width: 220px;
+        background-color: #3a8d3c; /* dark pastel green */
+        color: white;
+        height: 100vh;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+    }
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .sidebar a {
+        padding: 15px;
+        color: white;
+        text-decoration: none;
+        border-top: 1px solid #5aa45a;
+        transition: background 0.3s;
+        font-weight: bold;
+    }
+    .sidebar a:hover {
+        background-color: #5aa45a;
+    }
+    .main {
+        flex: 1;
+        padding: 20px;
+        margin-left: 240px;
+        overflow-x: auto;
+    }
+    .subpage {
+        display: none;
+        animation: fadeIn 0.5s;
+    }
+    .subpage.active {
+        display: block;
+    }
+
+    /* Vertical block diagram */
+    .diagram {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+    }
+    .box {
+        padding: 15px 20px;
+        margin: 10px;
+        text-align: center;
+        border-radius: 6px;
+        min-width: 220px;
+        color: white;
+        font-weight: bold;
+        position: relative;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+    }
+    .source { background-color: #f1c40f; color: black; }
+    .conversion { background-color: #3498db; }
+    .storage { background-color: #e67e22; }
+    .output { background-color: #2ecc71; }
+
+    /* Arrow with label */
+    .arrow {
+        width: 3px;
+        height: 50px;
+        background: #2c3e50;
+        position: relative;
+        margin: -5px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .arrow::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: -7px;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 10px solid #2c3e50;
+    }
+    .arrow span {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg);
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 12px;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    p {
+        text-align: justify;
+        line-height: 1.6;
+        background: #ffffffb3;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+        background-color: #3a8d3c;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <div class="sidebar">
+        <h2>Activities</h2>
+        <a href="#" onclick="openSubpage('activity1')"><b>Activity 1</b></a>
+        <a href="#" onclick="openSubpage('activity2')"><b>Activity 2</b></a>
+        <a href="#" onclick="openSubpage('activity3')"><b>Activity 3</b></a>
+    </div>
+
+    <div class="main">
+        <!-- Activity 1 -->
+        <div id="activity1" class="subpage active">
+            <h1>Activity 1: Rooftop Solar PV System (5 kW)</h1>
+            <div class="diagram">
+                <div class="box source">Sunlight</div>
+                <div class="arrow"><span>Solar Energy</span></div>
+                <div class="box conversion">Solar Panels (DC)</div>
+                <div class="arrow"><span>DC Electricity</span></div>
+                <div class="box storage">Charge Controller & Battery</div>
+                <div class="arrow"><span>DC Electricity</span></div>
+                <div class="box conversion">Inverter (DC → AC)</div>
+                <div class="arrow"><span>AC Electricity</span></div>
+                <div class="box output">Household Loads / Grid</div>
+            </div>
+
+            <p>
+                <strong>Source of energy:</strong> Solar energy from the sun is captured by rooftop photovoltaic panels installed on the house roof. This energy is renewable, clean, and sustainable, significantly reducing the dependence on fossil fuels.<br><br>
+                <strong>Conversion process:</strong> The solar panels convert sunlight into direct current (DC) electricity. A charge controller regulates the flow of electricity and stores it in batteries for backup. The inverter converts the DC into alternating current (AC) that powers home appliances and can also feed excess energy to the grid.<br><br>
+                <strong>Output/utilization:</strong> The generated AC power runs lighting, fans, and electronic devices. Stored energy in batteries ensures reliable power during cloudy days or at night.<br><br>
+                <strong>Real-world relevance:</strong> Rooftop solar systems promote sustainable living, lower electricity bills, and contribute to a greener planet by minimizing carbon emissions.
+            </p>
+        </div>
+
+        <!-- Activity 2 -->
+        <div id="activity2" class="subpage">
+            <h1>Activity 2: Hybrid Solar PV + Wind System</h1>
+            <div class="diagram">
+                <div class="box source">Sunlight</div>
+                <div class="arrow"><span>Solar Energy</span></div>
+                <div class="box conversion">Solar Panels (DC)</div>
+                <div class="arrow"><span>DC Electricity</span></div>
+                <div class="box source">Wind</div>
+                <div class="arrow"><span>Wind Energy</span></div>
+                <div class="box conversion">Wind Turbine (AC/DC)</div>
+                <div class="arrow"><span>Electricity</span></div>
+                <div class="box storage">Battery & Controller</div>
+                <div class="arrow"><span>DC Electricity</span></div>
+                <div class="box conversion">Inverter (DC → AC)</div>
+                <div class="arrow"><span>AC Electricity</span></div>
+                <div class="box output">Rural Health Clinic Loads</div>
+            </div>
+
+            <p>
+                <strong>Source of energy:</strong> This hybrid system utilizes both solar and wind energy. Solar panels generate power during the day, while the wind turbine produces energy whenever wind conditions are favorable, ensuring continuous operation.<br><br>
+                <strong>Conversion process:</strong> Solar panels produce DC electricity, and the wind turbine generates AC or DC power. Both sources charge a common battery bank through a charge controller. An inverter converts DC to AC, providing electricity for lighting, refrigeration, and medical equipment in the clinic.<br><br>
+                <strong>Output/utilization:</strong> The system provides reliable power for rural health clinics, ensuring 24/7 operation even in the absence of grid electricity.<br><br>
+                <strong>Real-world relevance:</strong> Hybrid systems enhance energy reliability in remote areas, reduce generator fuel dependency, lower maintenance costs, and promote eco-friendly healthcare services.
+            </p>
+        </div>
+
+        <!-- Activity 3 -->
+        <div id="activity3" class="subpage">
+            <h1>Activity 3: Solar-Powered Irrigation Pump</h1>
+            <div class="diagram">
+                <div class="box source">Sunlight</div>
+                <div class="arrow"><span>Solar Energy</span></div>
+                <div class="box conversion">Solar Panels (DC)</div>
+                <div class="arrow"><span>DC Electricity</span></div>
+                <div class="box storage">Battery (Optional)</div>
+                <div class="arrow"><span>DC Electricity</span></div>
+                <div class="box conversion">Water Pump</div>
+                <div class="arrow"><span>Mechanical Energy</span></div>
+                <div class="box output">Irrigation Fields / Crops</div>
+            </div>
+
+            <p>
+                <strong>Source of energy:</strong> Solar energy from sunlight is collected using photovoltaic panels. It provides an abundant and renewable source of power, ideal for agricultural use in off-grid or rural regions.<br><br>
+                <strong>Conversion process:</strong> The panels convert solar radiation into DC electricity, which either directly powers the pump or charges a battery for later use. The pump lifts water from wells or reservoirs to irrigate farmlands, supporting continuous crop growth.<br><br>
+                <strong>Output/utilization:</strong> Water is delivered to crops, ensuring consistent irrigation. The system can operate autonomously with minimal supervision, saving operational costs.<br><br>
+                <strong>Real-world relevance:</strong> Solar irrigation reduces dependency on diesel pumps, lowers emissions, supports food security, and promotes green technology adoption in agriculture.
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy;2025 CLEAN AND GREEN ENERGY(21EEO307T) | Sriman Pratyush Pattnaik-RA2311009010122
+</footer>
+
+<script>
+    function openSubpage(id) {
+        const subpages = document.querySelectorAll('.subpage');
+        subpages.forEach(sp => sp.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
